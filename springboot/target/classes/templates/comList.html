@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户列表</title>
+</head>
+<body>
+    <a href="/"><button>返回添加页面</button></a>
+    <div align="center">
+        <table style="border: 1px solid;">
+            <tr>
+                <th>公司名</th>
+                <th>公司省份</th>
+                <th>联系方式</th>
+            </tr>
+            <tr th:each="company:${comList}">
+                <td th:text="${company.companyname}"></td>
+                <td th:text="${company.companyprovince}"></td>
+                <td th:text="${company.telephone}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
