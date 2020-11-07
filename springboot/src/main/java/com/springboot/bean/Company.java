@@ -15,7 +15,7 @@ public class Company extends BaseBean {
 	@Column(name="telephone")
 	public String telephone;
  
-	public String companyprovince() {
+	public String getName() {
 		return companyname;
 	}
 	public void setName(String name) {
