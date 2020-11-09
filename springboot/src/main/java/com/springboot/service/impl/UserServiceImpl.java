@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService {
 	public void save(User user) {
 		// TODO Auto-generated method stub
 		userDao.save(user);
+		System.out.println(user.getName());
 	}
 
 @Override

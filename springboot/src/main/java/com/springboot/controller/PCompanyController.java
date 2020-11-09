@@ -22,7 +22,7 @@ public class PCompanyController {
 	private PCompanyService pcompanyServie; 
 	
 	@RequestMapping("/compage")
-    public String compage(Model model, @RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "200") int pageSize) {
+    public String compage(Model model, @RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "50") int pageSize) {
         System.out.println("============================");
         Page<PCompany> PCompanys=pcompanyServie.getComList(pageNum, pageSize);
         System.out.println("总页数" + PCompanys.getTotalPages());
