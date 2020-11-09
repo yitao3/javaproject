@@ -40,10 +40,10 @@
 	function searchCompany(){
 		var formData = new FormData();
 
-		formData.append('name', document.getElementById("type").innerHTML);
-		formData.append('age', 12);
-		formData.append('info', "李四");
-
+		formData.append('conditionName', document.getElementById("type").innerHTML);
+		<!-- formData.append('age', 12);-->
+		<!-- formData.append('info', "李四");-->
+		
 		var xhr = new XMLHttpRequest();
 		xhr.open('POST', '/save');
 		xhr.send(formData);

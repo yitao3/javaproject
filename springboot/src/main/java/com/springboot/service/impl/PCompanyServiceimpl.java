@@ -17,7 +17,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.springboot.bean.Condition;
 import com.springboot.bean.PCompany;
+import com.springboot.bean.User;
 import com.springboot.dao.PCompanyDao;
 import com.springboot.service.PCompanyService;
 
@@ -47,4 +49,10 @@ public class PCompanyServiceimpl implements PCompanyService{
 
         return pcompanys;
     }
+	public void save(Condition cond) {
+		/*
+		 * // TODO Auto-generated method stub pcompanyDao.save(cond);
+		 * System.out.println(cond.getName());
+		 */
+	}
 }

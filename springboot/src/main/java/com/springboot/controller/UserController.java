@@ -29,12 +29,12 @@ public String index(Model model) {
 	return "index";
 }
 
-@RequestMapping("/save")
-@ResponseBody
-public String save(User user) {
-	userService.save(user);
-	return "save success !";
-}
+/*
+ * @RequestMapping("/save")
+ * 
+ * @ResponseBody public String save(User user) { userService.save(user); return
+ * "save success !"; }
+ */
 
 @RequestMapping("/userList")
 public String userList(Model model) {
