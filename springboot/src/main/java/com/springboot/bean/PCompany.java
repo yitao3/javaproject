@@ -17,7 +17,8 @@ public class PCompany extends BaseBean implements Serializable{
 		public String companyprovince;
 		@Column(name="telephone")
 		public String telephone;
-	 
+		public String type;
+		
 		public String companyprovince() {
 			return companyname;
 		}

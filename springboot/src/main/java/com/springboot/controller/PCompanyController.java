@@ -27,17 +27,13 @@ public class PCompanyController {
         Page<PCompany> PCompanys=pcompanyServie.getComList(pageNum, pageSize);
         System.out.println("总页数" + PCompanys.getTotalPages());
         System.out.println("当前页是：" + pageNum);
-
         System.out.println("分页数据：");
         Iterator<PCompany> u = PCompanys.iterator();
         while (u.hasNext()){
 
             System.out.println(u.next().toString());
         }
-
         model.addAttribute("pcompanys", PCompanys);
-
-
         return "compage";
     }
 }
