@@ -28,7 +28,7 @@ public class PCompanyServiceimpl implements PCompanyService{
 	@Autowired
 	private PCompanyDao pcompanyDao;
     @Override
-    public Page<PCompany> getComList(int pageNum, int pageSize) {
+    public Page<PCompany> getComList(int pageNum, int pageSize,String type) {
     	Specification<PCompany> spec = new Specification<PCompany>() {
     		/**
     		 * @param *root: 代表查询的实体类. 
@@ -39,12 +39,14 @@ public class PCompanyServiceimpl implements PCompanyService{
     		 */
     		@Override
     		public Predicate toPredicate(Root<PCompany> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-    			Predicate p1 = cb.equal(root.get("companyprovince"), "浙江");
+    			Predicate p1 = cb.equal(root.get("type"), type);
+    			System.out.println(type);
     			return p1;
     		}
     	};
         //Sort sort = new Sort(Sort.Direction.DESC, "id");
         Pageable pageable = PageRequest.of(pageNum, pageSize);
+        System.out.println(spec);
         Page<PCompany> pcompanys = pcompanyDao.findAll(spec,pageable);
 
         return pcompanys;

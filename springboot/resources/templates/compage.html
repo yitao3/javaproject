@@ -33,23 +33,30 @@
 	}
 	</script>
 </div>
-
-</div>
-    <button type="button" id="search" onclick="searchCompany()" class="btn btn-primary">搜索</button>
-	<script>
-	function searchCompany(){
-		var formData = new FormData();
-
-		formData.append('conditionName', document.getElementById("type").innerHTML);
-		<!-- formData.append('age', 12);-->
-		<!-- formData.append('info', "李四");-->
-		
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', '/save');
-		xhr.send(formData);
+<div>
+<button type="button" id="search" onclick="searchcompany()" class="btn btn-primary">搜索</button>	
+<script>
+		function searchcompany(){
+		  var tp = document.getElementById("type").innerHTML
+		  $.ajax({
+			url: "search?type="+tp,
+			type: "POST",
+			data:{},
+			dataType: "json",
+			success: function(data){
+			},
+			error:function(err){
+			  console.log(err.statusText);
+			  console.log('异常');
+			}
+		  });
 		}
-	</script>	
+</script>
 </div>
+<form action="/search" method="post">
+        <input type="hidden" name="type" value=document.getElementById("type").innerHTML />
+        <input type="button" class="btn btn-primary" value="搜索"/>
+</form>
 <div class="btn-group">
   
 </div>
@@ -67,6 +74,7 @@
             <td th:text="${pcompany.companyname}">neo</td>
             <td th:text="${pcompany.companyprovince}">Otto</td>
             <td th:text="${pcompany.telephone}">6</td>
+			<td th:text="${pcompany.type}">6</td>
         </tr>
         </tbody>
     </table>

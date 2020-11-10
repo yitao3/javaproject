@@ -7,6 +7,6 @@ import com.springboot.bean.PCompany;
 
 public interface PCompanyService {
 
-	Page<PCompany> getComList(int pageNum, int pageSize);
+	Page<PCompany> getComList(int pageNum, int pageSize,String tp);
 	void save(Condition cond);
 }

@@ -17,6 +17,7 @@ public class PCompany extends BaseBean implements Serializable{
 		public String companyprovince;
 		@Column(name="telephone")
 		public String telephone;
+		@Column(name="type")
 		public String type;
 		
 		public String companyprovince() {
@@ -39,6 +40,12 @@ public class PCompany extends BaseBean implements Serializable{
 		public void setCell(String telephone) {
 			this.telephone = telephone;
 		}
-	  
+		public String gettype() {
+			return type;
+		}
+	 
+		public void settype(String type) {
+			this.type = type;
+		}	  
 	 
 	}

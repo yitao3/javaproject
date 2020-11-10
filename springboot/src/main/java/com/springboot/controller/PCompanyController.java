@@ -2,10 +2,13 @@ package com.springboot.controller;
 
 import com.springboot.bean.Condition;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
 
 import java.util.HashMap;
@@ -28,9 +31,10 @@ public class PCompanyController {
 	private PCompanyService pcompanyService; 
 	
 	@RequestMapping("/compage")
-    public String compage(Model model, @RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "50") int pageSize) {
-        System.out.println("============================");
-        Page<PCompany> PCompanys=pcompanyService.getComList(pageNum, pageSize);
+    public String compage(Model model, @RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "50") int pageSize,@ModelAttribute("type") String tp) {
+    	System.out.println("type是:"+tp);
+		System.out.println("============================");
+        Page<PCompany> PCompanys=pcompanyService.getComList(pageNum, pageSize,tp);
         System.out.println("总页数" + PCompanys.getTotalPages());
         System.out.println("当前页是：" + pageNum);
         System.out.println("分页数据：");
@@ -44,7 +48,6 @@ public class PCompanyController {
     }
 	
 	  @RequestMapping(value="/save",method = RequestMethod.POST)
-	  @ResponseBody
 		public String buildRequest(HttpServletRequest request){			
 			// 方式一：getParameterMap()，获得请求参数map
 			Map<String,String> parmMap=new HashMap<String,String>();
@@ -58,6 +61,13 @@ public class PCompanyController {
 				parmMap.put(k, map.get(k)[0]);
 			}
 			System.out.println("parmMap====="+parmMap.toString());
-			return "success";
+			return "compage";
+	  }
+	    @RequestMapping("/search")
+		public String search(RedirectAttributes attr,@RequestParam("type") String str){			
+	    	attr.addFlashAttribute("type",str);
+	    	System.out.println("str是:"+str);
+	        return "redirect:/compage";
+
 	  }
 }
