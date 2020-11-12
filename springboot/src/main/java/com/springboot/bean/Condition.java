@@ -5,12 +5,11 @@ public class Condition extends BaseBean{
 	 
 		public String conditionName;
 	 
-		public String getName() {
+		public String getconditionName() {
 			return conditionName;
 		}
-		public void setName(String name) {
+		public void setconditionName(String name) {
 			this.conditionName = name;
-		} 
-	  
+		}
 	 
 }
