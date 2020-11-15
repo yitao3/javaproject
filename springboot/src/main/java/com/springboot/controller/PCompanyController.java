@@ -63,13 +63,7 @@ public class PCompanyController {
 			System.out.println("parmMap====="+parmMap.toString());
 			return "compage";
 	  }
-	    @RequestMapping("/search123")
-		public String search(RedirectAttributes attr,@RequestParam("type") String str){			
-	    	attr.addFlashAttribute("type",str);
-	    	System.out.println("str是:"+str);
-	        return "redirect:/compage";
 
-	  }
 	    @RequestMapping(value="/search", method=RequestMethod.GET)
 	    public String sayHelloForm(Model model) {
 	        model.addAttribute("condition", new Condition());
@@ -77,9 +71,18 @@ public class PCompanyController {
 	    }
 
 	    //表单提交，进行处理，并返回结果页面
+	    //@RequestMapping(value="/test", method=RequestMethod.POST)
+	    //public String sayHello(@ModelAttribute Condition condition, Model model) throws Exception {
+	    //	System.out.println("str是:"+condition.getconditionName());
+	    //    return "";
+	    //}
+	    //表单提交，进行处理，并返回结果页面
 	    @RequestMapping(value="/test", method=RequestMethod.POST)
-	    public String sayHello(@ModelAttribute Condition condition, Model model) throws Exception {
-	    	System.out.println("str是:"+condition.getconditionName());
-	        return "";
+	    public String sayHello(@RequestParam("interest") String interest,@RequestParam(value="rdSpeed") String rdSpeed,@RequestParam(value="type") String type, Model model,RedirectAttributes attr) throws Exception {
+	    	System.out.println("输出一："+interest);
+	    	System.out.println("输出二："+type);
+	    	//model.addAttribute("type", "浙江");
+	    	attr.addAttribute("type","同行");
+	        return "redirect:/compage";
 	    }
 }
