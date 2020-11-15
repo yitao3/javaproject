@@ -78,9 +78,9 @@ public class PCompanyController {
 	    //}
 	    //表单提交，进行处理，并返回结果页面
 	    @RequestMapping(value="/test", method=RequestMethod.POST)
-	    public String sayHello(@RequestParam("interest") String interest,@RequestParam(value="rdSpeed") String rdSpeed,@RequestParam(value="type") String type, Model model,RedirectAttributes attr) throws Exception {
+	    public String sayHello(@RequestParam("interest") String interest,@RequestParam(value="rdSpeed") String rdSpeed,@RequestParam(value="type") String type,@RequestParam(value="leixing") String lx, Model model,RedirectAttributes attr) throws Exception {
 	    	System.out.println("输出一："+interest);
-	    	System.out.println("输出二："+type);
+	    	System.out.println("输出二："+lx);
 	    	//model.addAttribute("type", "浙江");
 	    	attr.addAttribute("type","同行");
 	        return "redirect:/compage";
