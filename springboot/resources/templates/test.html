@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>pcompanyList</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
+</head>
+<div class="jumbotron" style="height:150px">
+  <p style="font-size:50px;font-weight:bold;" align=center>货代客户系统</p>
+</div>
+<!-- Single button -->
+
+<div style="width:100%;text-align:center;">
+	<form class="form-inline" role="form">
+		<div class="form-group">
+			<div class="btn-group">
+			  <button type="button" id ="select" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				客户类型 <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+				<li id="th"><a href="#">同行客户</a></li>
+				<li id="zk"><a href="#">直客客户</a></li>
+			  </ul>
+			</div>
+		</div>
+		<div class="form-group">
+				<div class="col-sm-4" style="width:200px">
+					<select id="usertype" name="usertype" class="selectpicker show-tick form-control" multiple data-live-search="false" data-none-selected-text="地区">
+						<option value="0">天津</option>	
+						<option value="1">山东</option>	
+						<option value="2">上海</option>	
+						<option value="3">浙江</option>	
+						<option value="4">福建</option>	
+						<option value="5">广东</option>	
+						<option value="6">北京</option>	
+						<option value="7">河北</option>	
+						<option value="8">辽宁</option>	
+						<option value="9">吉林</option>	
+						<option value="10">黑龙江</option>	
+						<option value="11">江苏</option>	
+						<option value="12">安徽</option>	
+						<option value="13">江西</option>	
+						<option value="14">广西</option>	
+						<option value="15">海南</option>	
+						<option value="16">河南</option>	
+						<option value="17">湖南</option>	
+						<option value="18">湖北</option>	
+						<option value="19">山西</option>	
+						<option value="20">内蒙古</option>	
+						<option value="21">宁夏</option>	
+						<option value="22">青海</option>	
+						<option value="23">陕西</option>	
+						<option value="24">甘肃</option>	
+						<option value="25">新疆</option>	
+						<option value="26">四川</option>	
+						<option value="27">贵州</option>	
+						<option value="28">云南</option>	
+						<option value="29">重庆</option>	
+						<option value="30">西藏</option>	
+						<option value="31">香港</option>	
+						<option value="32">澳门</option>	
+						<option value="33">台湾</option>	
+					</select>
+				</div>
+		</div>
+		<div class="form-group">
+			<div class="btn-group">
+			  <button type="button" class="btn btn-primary">
+				搜索
+			  </button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script>
+$(function(){
+   $("#th").click(function(){
+      $("#select").text("同行客户") ;
+   });
+   $("#zk").click(function(){
+      $("#select").text("直客客户") ;
+   }); 
+});
+   
+</script>
