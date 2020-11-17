@@ -31,10 +31,10 @@ public class PCompanyController {
 	private PCompanyService pcompanyService; 
 	
 	@RequestMapping("/compage")
-    public String compage(Model model, @RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "50") int pageSize,@ModelAttribute("type") String tp) {
+    public String compage(Model model, @RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "50") int pageSize,@ModelAttribute("type") String tp,@ModelAttribute("district") String dist) {
     	System.out.println("type是:"+tp);
 		System.out.println("============================");
-        Page<PCompany> PCompanys=pcompanyService.getComList(pageNum, pageSize,tp);
+        Page<PCompany> PCompanys=pcompanyService.getComList(pageNum, pageSize,tp,dist);
         System.out.println("总页数" + PCompanys.getTotalPages());
         System.out.println("当前页是：" + pageNum);
         System.out.println("分页数据：");
@@ -77,12 +77,13 @@ public class PCompanyController {
 	    //    return "";
 	    //}
 	    //表单提交，进行处理，并返回结果页面
-	    @RequestMapping(value="/test", method=RequestMethod.POST)
-	    public String sayHello(@RequestParam("interest") String interest,@RequestParam(value="rdSpeed") String rdSpeed,@RequestParam(value="type") String type,@RequestParam(value="leixing") String lx, Model model,RedirectAttributes attr) throws Exception {
-	    	System.out.println("输出一："+interest);
-	    	System.out.println("输出二："+lx);
+	    @RequestMapping(value="/tosearch", method=RequestMethod.POST)
+	    public String sayHello(@RequestParam("district") String district,@RequestParam(value="type") String type, Model model,RedirectAttributes attr) throws Exception {
+	    	System.out.println("输出一："+district);
+	    	System.out.println("输出二："+type);
 	    	//model.addAttribute("type", "浙江");
-	    	attr.addAttribute("type","同行");
+	    	attr.addAttribute("district",district);
+	    	attr.addAttribute("type",type);
 	        return "redirect:/compage";
 	    }
 }

@@ -28,7 +28,7 @@ public class PCompanyServiceimpl implements PCompanyService{
 	@Autowired
 	private PCompanyDao pcompanyDao;
     @Override
-    public Page<PCompany> getComList(int pageNum, int pageSize,String type) {
+    public Page<PCompany> getComList(int pageNum, int pageSize,String type,String district) {
     	Specification<PCompany> spec = new Specification<PCompany>() {
     		/**
     		 * @param *root: 代表查询的实体类. 
@@ -39,9 +39,21 @@ public class PCompanyServiceimpl implements PCompanyService{
     		 */
     		@Override
     		public Predicate toPredicate(Root<PCompany> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-    			Predicate p1 = cb.equal(root.get("type"), type);
-    			System.out.println(type);
-    			return p1;
+    			List<Predicate> listAnd=new ArrayList<>(); //组装and语句
+                if(type == null || type.length() <= 0) {
+                    listAnd.add(cb.like(root.get("type"), "%" +type ));  //姓名 模糊查询
+                }
+
+                Predicate predicateAnd = cb.and(listAnd.toArray(new Predicate[listAnd.size()])); //AND查询加入查询条件
+                List<Predicate> listOr = new ArrayList<>();///组装or语句
+                if(district!=null && district.length()>0) {
+                    for (int i = 0 ; i<district.length()) {
+                        //爱好多选 用OR链接
+                        listOr.add(cb.equal(root.get("hobbie"), hoobbie));
+                    }
+                }
+                Predicate predicateOR = cb.or(listOr.toArray(new Predicate[listOr.size()])); //OR查询加入查询条件
+                return query.where(predicateAnd,predicateOR).getRestriction();
     		}
     	};
         //Sort sort = new Sort(Sort.Direction.DESC, "id");
