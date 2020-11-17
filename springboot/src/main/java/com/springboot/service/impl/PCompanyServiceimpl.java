@@ -46,10 +46,11 @@ public class PCompanyServiceimpl implements PCompanyService{
 
                 Predicate predicateAnd = cb.and(listAnd.toArray(new Predicate[listAnd.size()])); //AND查询加入查询条件
                 List<Predicate> listOr = new ArrayList<>();///组装or语句
-                if(district!=null && district.length()>0) {
-                    for (int i = 0 ; i<district.length()) {
+            	String[] dists = district.split(",");
+                if(dists!=null && dists.length>0) {
+                    for (int i = 0 ; i<dists.length;i++) {
                         //爱好多选 用OR链接
-                        listOr.add(cb.equal(root.get("hobbie"), hoobbie));
+                        listOr.add(cb.equal(root.get("companyprovince"),dists[i]));
                     }
                 }
                 Predicate predicateOR = cb.or(listOr.toArray(new Predicate[listOr.size()])); //OR查询加入查询条件

@@ -32,7 +32,7 @@ public class PCompanyController {
 	
 	@RequestMapping("/compage")
     public String compage(Model model, @RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "50") int pageSize,@ModelAttribute("type") String tp,@ModelAttribute("district") String dist) {
-    	System.out.println("type是:"+tp);
+    	System.out.println("type是:"+dist);
 		System.out.println("============================");
         Page<PCompany> PCompanys=pcompanyService.getComList(pageNum, pageSize,tp,dist);
         System.out.println("总页数" + PCompanys.getTotalPages());
