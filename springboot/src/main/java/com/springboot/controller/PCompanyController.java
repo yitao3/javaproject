@@ -11,13 +11,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -85,5 +90,30 @@ public class PCompanyController {
 	    	attr.addAttribute("district",district);
 	    	attr.addAttribute("type",type);
 	        return "redirect:/compage";
+	    }
+	    @RequestMapping(value="/tokentest", method=RequestMethod.POST)
+	    protected void doPost(HttpServletRequest request,
+	            HttpServletResponse response, BufferedReader br)
+	            throws ServletException, IOException {
+	//Header部分
+	        System.out.print(request.getHeaderNames());
+	        Enumeration<?> enum1 = request.getHeaderNames();
+	        while (enum1.hasMoreElements()) {
+	            String key = (String) enum1.nextElement();
+	            String value = request.getHeader(key);
+	            System.out.println(key + "\t" + value);
+	        }
+	//body部分
+	        String inputLine;
+	        String str = "";
+	        try {
+	            while ((inputLine = br.readLine()) != null) {
+	                str += inputLine;
+	            }
+	            br.close();
+	        } catch (IOException e) {
+	            System.out.println("IOException: " + e);
+	        }
+	        System.out.println("str:" + str);
 	    }
 }
