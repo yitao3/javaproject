@@ -1,9 +1,12 @@
 package com.springboot.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.springboot.bean.Condition;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -91,7 +94,7 @@ public class PCompanyController {
 	    	attr.addAttribute("type",type);
 	        return "redirect:/compage";
 	    }
-	    @RequestMapping(value="/tokentest", method=RequestMethod.POST)
+	    @RequestMapping(value="/tokenhead", method=RequestMethod.POST)
 	    protected void doPost(HttpServletRequest request,
 	            HttpServletResponse response, BufferedReader br)
 	            throws ServletException, IOException {
@@ -115,5 +118,19 @@ public class PCompanyController {
 	            System.out.println("IOException: " + e);
 	        }
 	        System.out.println("str:" + str);
+	    }
+	    @RequestMapping(value="/tokenbody", method=RequestMethod.POST)
+	    protected void doPostbody(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			String nickname = request.getParameter("name");
+			String region = request.getParameter("user");
+			System.out.println("nickname:" + nickname);
+			System.out.println("region:" + region);
+			}
+	    @RequestMapping(value="/token")
+	    protected String token(){
+	    	return "token";
 	    }
 }

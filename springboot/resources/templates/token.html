@@ -5,34 +5,73 @@
     <title>pcompanyList</title>
 	<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
 </head>
 <body>
 First name: <input type="txt" id="test" />
-<button onclick="loadFile()">提交</button>
+<button id="btnOK">提交</button>
 <script>
-	function loadFile(){
-		var str = document.getElementById("test").innerHTML
-	    var formdata = new FormData($('form')[0]);
-		formdata.append('username','str');
 
-$.ajax({
-		url: "tokentest",
-		data: formdata,
-		type: "POST",
-		dataType: "json",
-		async: false,
-		cache: false,
-		success: function(data,headers) {
-			console.log(data);
-			console.log(headers);//一般是在这里拿，要看后端是煮面封装的
-		},
-		error: function(data) {
-			console.log(data);
-		}
-	});
-	}
+$(function() {   
+    $("#btnOK").click(function() {  
+		var str = document.getElementById("test").value;
+	    var formdata = new FormData();
+		formdata.append("username",str);
+        $.ajax({   
+		
+          headers: {
+            "token":str//此处放置请求到的用户token
+          },
+            type: "Post",   
+            url: "tokentest",   
+            //方法传参的写法一定要对，str为形参的名字,str2为第二个形参的名字     
+            contentType: false,   
+            dataType: "json",   
+            success: function(data) {   
+                //返回的数据用data.d获取内容   
+                  alert(data.d);   
+            },   
+            error: function(err) {   
+                alert(err);   
+            }   
+        });   
+ 
+        //禁用按钮的提交   
+        return false;   
+    });   
+});
+</script>
+First name: <input type="txt" id="testbody" />
+<button id="btnOKbody">提交</button>
+<script>
+
+$(function() {   
+    $("#btnOKbody").click(function() {  
+		var str = document.getElementById("testbody").value;
+        $.ajax({   
+		
+			url: "tokenbody",
+			type: "POST",
+			data:{
+			  name:str,
+			  user:str
+			},
+			cache:false,
+			dataType: "json", 
+            success: function(data) {   
+                //返回的数据用data.d获取内容   
+                  alert(data.d);   
+            },   
+            error: function(err) {   
+                alert(err);   
+            }   
+        });   
+ 
+        //禁用按钮的提交   
+        return false;   
+    });   
+});
 </script>
 </body>
 
