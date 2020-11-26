@@ -17,4 +17,5 @@ public interface UserService {
  * @return
  */
 List<User> getUserList();
+public User getUserinfo(String username);
 }

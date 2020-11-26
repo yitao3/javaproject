@@ -1,5 +1,6 @@
 package com.springboot.bean;
  
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
  
@@ -7,10 +8,11 @@ import javax.persistence.Table;
 @Table(name = "user")
 public class User extends BaseBean {
  
-	private String name;
-	private int age;
-	private String info;
- 
+	@Column(name="user_name")
+	public String name;
+	@Column(name="user_password")
+	public String password;
+
 	public String getName() {
 		return name;
 	}
@@ -19,20 +21,12 @@ public class User extends BaseBean {
 		this.name = name;
 	}
  
-	public int getAge() {
-		return age;
+	public String getPassword() {
+		return password;
 	}
  
-	public void setAge(int age) {
-		this.age = age;
-	}
- 
-	public String getInfo() {
-		return info;
-	}
- 
-	public void setInfo(String info) {
-		this.info = info;
+	public void setPassword(String password) {
+		this.password = password;
 	}
  
 }

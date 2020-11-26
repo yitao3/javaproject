@@ -70,4 +70,5 @@ public class PCompanyServiceimpl implements PCompanyService{
 		 * System.out.println(cond.getName());
 		 */
 	}
+
 }

@@ -31,12 +31,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
 import com.springboot.service.PCompanyService;
+import com.springboot.service.UserService;
 import com.springboot.bean.PCompany;
+import com.springboot.bean.User;
 
 @Controller
 public class PCompanyController {
 	@Autowired
 	private PCompanyService pcompanyService; 
+	private UserService userservice; 
 	
 	@RequestMapping("/compage")
     public String compage(Model model, @RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "50") int pageSize,@ModelAttribute("type") String tp,@ModelAttribute("district") String dist) {
@@ -129,8 +132,25 @@ public class PCompanyController {
 			System.out.println("nickname:" + nickname);
 			System.out.println("region:" + region);
 			}
+	    @RequestMapping(value="/login", method=RequestMethod.POST)
+	    protected void dologin(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			System.out.println("username:"+username);
+			User user = userservice.getUserinfo(username);
+			String pwd = user.getPassword();
+			System.out.println("pwd"+password);
+			System.out.println("pwd"+pwd);
+			}
 	    @RequestMapping(value="/token")
 	    protected String token(){
 	    	return "token";
+	    }
+	    @RequestMapping(value="/loginpage")
+	    protected String login(){
+	    	return "loginpage";
 	    }
 }

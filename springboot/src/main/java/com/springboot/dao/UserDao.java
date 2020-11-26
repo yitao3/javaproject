@@ -6,5 +6,5 @@ import com.springboot.bean.User;
  
 @Repository
 public interface UserDao extends CommonDao<User> {
- 
+	User findByName(String username);
 }
